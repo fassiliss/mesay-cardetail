@@ -34,7 +34,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout footerStyle={1} headerStyle={1}>
+    <Layout footerStyle={1} >
       <div>
         {/* header */}
         <div className="page-header pt-30 background-body">

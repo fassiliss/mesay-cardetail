@@ -73,7 +73,7 @@ const testimonials = [
 export default function Services() {
   return (
     <>
-      <Layout headerStyle={1} footerStyle={1}>
+      <Layout  footerStyle={1}>
         <div>
           {/* Page Header */}
           <div className="page-header pt-30 background-body">

@@ -3,7 +3,7 @@ import Gallery from "@/components/sections/Gallery"; // or BeforeAfterGallery if
 
 export default function GalleryPage() {
   return (
-    <Layout headerStyle={1} footerStyle={1}>
+    <Layout footerStyle={1}>
       <Gallery />
     </Layout>
   );
