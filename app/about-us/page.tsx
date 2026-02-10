@@ -3,11 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ModalVideo from "react-modal-video";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import CounterUp from "@/components/elements/CounterUp";
 import Layout from "@/components/layout/Layout";
-import { swiperGroup3, swiperGroupAnimate } from "@/util/swiperOptions";
 
 export default function AboutUs() {
   const [isOpen, setOpen] = useState(false);
@@ -18,7 +14,7 @@ export default function AboutUs() {
   };
 
   return (
-    <Layout headerStyle={1} footerStyle={1}>
+    <Layout footerStyle={1}>
       <div>
         <div className="page-header pt-30 background-body">
           <div className="custom-container position-relative mx-auto">
