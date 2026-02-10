@@ -123,11 +123,11 @@ export default function Contact() {
                       <p className="title heading-6 mb-1">Location</p>
                     </div>
                     <p className="text-md-medium mb-2 neutral-1000">
-                      12560 Rental Rd, Memphis, TN 38118
+                      Nashville, TN 37212
                     </p>
                     <Link
                       className="text-md-medium"
-                      href="https://www.google.com/maps?q=12560+Rental+Rd,+Memphis,+TN+38118"
+                      href="https://www.google.com/maps?q=Nashville,+TN+37212"
                       target="_blank"
                     >
                       Open in Google Maps
@@ -334,7 +334,7 @@ export default function Contact() {
                         Service Area
                       </p>
                       <p className="neutral-500 mb-0">
-                        Memphis + surrounding areas. Travel fees may apply
+                        Nashville + surrounding areas. Travel fees may apply
                         outside our core zone.
                       </p>
                     </div>
