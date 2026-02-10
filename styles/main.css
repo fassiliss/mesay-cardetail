@@ -14450,6 +14450,36 @@ a.icon-socials:hover svg path {
   max-width: none !important;
 }
 
+[data-bs-theme="dark"] .mobile-header-wrapper-style {
+  background: #0b0b0b !important;
+}
+
+[data-bs-theme="dark"] .mobile-header-wrapper-style a {
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .mobile-header-wrapper-style .mobile-menu li a {
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .mobile-header-wrapper-style .burger-icon {
+  filter: invert(1);
+}
+[data-bs-theme="dark"] .light-mode {
+  display: none !important;
+}
+
+[data-bs-theme="dark"] .dark-mode {
+  display: inline-block !important;
+}
+
+[data-bs-theme="light"] .dark-mode {
+  display: none !important;
+}
+
+[data-bs-theme="light"] .light-mode {
+  display: inline-block !important;
+}
 
 
 

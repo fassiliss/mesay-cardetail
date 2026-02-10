@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import dynamic from "next/dynamic";
+
+// ✅ Dark/Light toggle (client-only)
+const ThemeSwitch = dynamic(() => import("@/components/elements/ThemeSwitch"), {
+  ssr: false,
+});
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
   return (
@@ -12,7 +18,8 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
         }`}
       >
         <PerfectScrollbar className="mobile-header-wrapper-inner">
-          <div className="mobile-header-logo">
+          {/* ✅ Top bar */}
+          <div className="mobile-header-logo d-flex align-items-center justify-content-between">
             <Link className="d-flex" href="/" onClick={handleMobileMenu}>
               <img
                 className="light-mode"
@@ -22,12 +29,19 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
               />
             </Link>
 
-            <div
-              className="burger-icon burger-icon-white"
-              onClick={handleMobileMenu}
-            />
+            <div className="d-flex align-items-center gap-3">
+              {/* ✅ Theme toggle on mobile */}
+              <ThemeSwitch />
+
+              {/* ✅ Close menu icon */}
+              <div
+                className="burger-icon burger-icon-white"
+                onClick={handleMobileMenu}
+              />
+            </div>
           </div>
 
+          {/* ✅ Menu links */}
           <div className="mobile-header-content-area">
             <div className="perfect-scroll">
               <div className="mobile-menu-wrap mobile-header-border">
@@ -66,6 +80,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
         </PerfectScrollbar>
       </div>
 
+      {/* ✅ Overlay */}
       {isMobileMenu && (
         <div className="body-overlay-1" onClick={handleMobileMenu} />
       )}
