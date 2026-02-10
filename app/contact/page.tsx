@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 
@@ -15,12 +15,23 @@ export default function Contact() {
     agree: false,
   });
 
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
+  const onChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const target = e.target;
+    const name = target.name;
+
+    const value =
+      target instanceof HTMLInputElement && target.type === "checkbox"
+        ? target.checked
+        : target.value;
+
+    setForm((p) => ({ ...p, [name]: value }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!form.agree) {
@@ -28,15 +39,14 @@ export default function Contact() {
       return;
     }
 
-    // TODO: connect to email/API (Formspree, Resend, Next API route, etc.)
     console.log("Submitted:", form);
     alert("Thanks! We received your request. We’ll contact you soon.");
   };
 
   return (
-    <Layout footerStyle={1} >
+    <Layout footerStyle={1}>
       <div>
-        {/* header */}
+        {/* Header */}
         <div className="page-header pt-30 background-body">
           <div className="custom-container position-relative mx-auto">
             <div className="bg-overlay rounded-12 overflow-hidden">
@@ -46,6 +56,7 @@ export default function Contact() {
                 alt="Contact"
               />
             </div>
+
             <div className="container position-absolute z-1 top-50 start-50 translate-middle text-center">
               <h2 className="text-white">Get a Quote</h2>
               <span className="text-white text-xl-medium">
@@ -55,7 +66,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* contact cards - replace "agents worldwide" */}
+        {/* Contact Cards */}
         <section className="box-section background-body pt-110">
           <div className="container">
             <div className="text-start">
@@ -66,6 +77,7 @@ export default function Contact() {
             </div>
 
             <div className="row mt-30">
+              {/* Phone */}
               <div className="col-lg-4 col-sm-6 mb-4">
                 <div className="card-contact">
                   <div className="card-info p-4">
@@ -74,7 +86,7 @@ export default function Contact() {
                     </div>
                     <Link
                       className="phone text-md-medium"
-                      href="tel:+12125550146"
+                      href="tel:+16156024555"
                     >
                       +1 (615) 602-4555
                     </Link>
@@ -83,6 +95,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Email */}
               <div className="col-lg-4 col-sm-6 mb-4">
                 <div className="card-contact">
                   <div className="card-info p-4">
@@ -91,7 +104,7 @@ export default function Contact() {
                     </div>
                     <Link
                       className="email text-md-medium"
-                      href="mailto:hello@yourdetailshop.com"
+                      href="mailto:crossshinecar@gmail.com"
                     >
                       crossshinecar@gmail.com
                     </Link>
@@ -102,6 +115,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Location */}
               <div className="col-lg-4 col-sm-6 mb-4">
                 <div className="card-contact">
                   <div className="card-info p-4">
@@ -113,7 +127,7 @@ export default function Contact() {
                     </p>
                     <Link
                       className="text-md-medium"
-                      href="https://www.google.com/maps"
+                      href="https://www.google.com/maps?q=12560+Rental+Rd,+Memphis,+TN+38118"
                       target="_blank"
                     >
                       Open in Google Maps
@@ -125,10 +139,11 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* form + map */}
+        {/* Form + Info */}
         <section className="box-section box-contact-form background-body">
           <div className="container">
             <div className="row">
+              {/* Form */}
               <div className="col-lg-6 mb-30">
                 <h2 className="neutral-1000 mb-25">
                   Request a Detailing Quote
@@ -215,12 +230,22 @@ export default function Contact() {
                           value={form.service}
                           onChange={onChange}
                         >
-                          <option>Interior Detail</option>
-                          <option>Exterior Detail</option>
-                          <option>Full Detail</option>
-                          <option>Paint Correction</option>
-                          <option>Ceramic Coating</option>
-                          <option>Engine Bay Detail</option>
+                          <option value="Interior Detail">
+                            Interior Detail
+                          </option>
+                          <option value="Exterior Detail">
+                            Exterior Detail
+                          </option>
+                          <option value="Full Detail">Full Detail</option>
+                          <option value="Paint Correction">
+                            Paint Correction
+                          </option>
+                          <option value="Ceramic Coating">
+                            Ceramic Coating
+                          </option>
+                          <option value="Engine Bay Detail">
+                            Engine Bay Detail
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -241,33 +266,31 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    <div className="box-remember-forgot">
-                      <div className="form-group">
-                        <div className="remeber-me">
-                          <label className="text-sm-medium neutral-500">
-                            <input
-                              className="cb-remember"
-                              type="checkbox"
-                              name="agree"
-                              checked={form.agree}
-                              onChange={onChange}
-                            />{" "}
-                            Agree to our{" "}
-                            <Link
-                              className="text-sm-medium neutral-1000"
-                              href="/term"
-                            >
-                              Terms of service
-                            </Link>{" "}
-                            and{" "}
-                            <Link
-                              className="text-sm-medium neutral-1000"
-                              href="/privacy"
-                            >
-                              Privacy Policy
-                            </Link>
-                          </label>
-                        </div>
+                    <div className="col-lg-12 mb-3">
+                      <div className="remeber-me">
+                        <label className="text-sm-medium neutral-500">
+                          <input
+                            className="cb-remember"
+                            type="checkbox"
+                            name="agree"
+                            checked={form.agree}
+                            onChange={onChange}
+                          />{" "}
+                          Agree to our{" "}
+                          <Link
+                            className="text-sm-medium neutral-1000"
+                            href="/term"
+                          >
+                            Terms of service
+                          </Link>{" "}
+                          and{" "}
+                          <Link
+                            className="text-sm-medium neutral-1000"
+                            href="/privacy"
+                          >
+                            Privacy Policy
+                          </Link>
+                        </label>
                       </div>
                     </div>
 
@@ -294,6 +317,7 @@ export default function Contact() {
                 </form>
               </div>
 
+              {/* Right Side Info */}
               <div className="col-lg-6 mb-30">
                 <div className="ps-lg-5">
                   <h4 className="neutral-1000">
@@ -310,8 +334,8 @@ export default function Contact() {
                         Service Area
                       </p>
                       <p className="neutral-500 mb-0">
-                        Memphis + surrounding areas (add your cities here).
-                        Travel fees may apply outside our core zone.
+                        Memphis + surrounding areas. Travel fees may apply
+                        outside our core zone.
                       </p>
                     </div>
 
@@ -339,6 +363,7 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
+              {/* End right */}
             </div>
           </div>
         </section>
