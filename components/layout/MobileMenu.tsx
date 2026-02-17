@@ -57,11 +57,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
                         Services
                       </Link>
                     </li>
-                    <li>
-                      <Link href="/gallery" onClick={handleMobileMenu}>
-                        Gallery
-                      </Link>
-                    </li>
+
                     <li>
                       <Link href="/about-us" onClick={handleMobileMenu}>
                         About
