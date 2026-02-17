@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import CounterUp from "@/components/elements/CounterUp";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
@@ -14,11 +15,7 @@ const services = [
     desc: "Deep steam clean to remove germs, odors, and grime safely.",
     img: "/assets/imgs/services/placeholders/steam1.png",
   },
-  // {
-  //   title: "Wax & Paint Protection",
-  //   desc: "High-gloss shine with protection from sun, rain, and dirt.",
-  //   img: "/assets/imgs/services/placeholders/wax.png",
-  // },
+ 
   {
     title: "Carpet & Seat Shampoo",
     desc: "Lift stains and restore seats & carpets for a like-new interior.",
@@ -71,10 +68,16 @@ const testimonials = [
 ];
 
 export default function Services() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <>
+
       <Layout footerStyle={1}>
         <div>
+
+          
+
           {/* Page Header */}
           <div className="page-header pt-30 background-body">
             <div className="custom-container position-relative mx-auto">
@@ -85,6 +88,7 @@ export default function Services() {
                   alt="CrossShine"
                 />
               </div>
+
               <div className="container position-absolute z-1 top-50 start-50 translate-middle">
                 <h2 className="text-white">Our Services</h2>
                 <span className="text-white text-xl-medium">
@@ -138,8 +142,13 @@ export default function Services() {
                             width: "100%",
                             height: 200,
                             objectFit: "cover",
+                            cursor: "pointer",
                           }}
+                        onClick={() => setSelectedImage(service.img)}
                         />
+                      </div>
+                          
+                        
                       </div>
                       <div className="card-info">
                         <div className="card-title mb-3">
@@ -167,7 +176,7 @@ export default function Services() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                 
                 ))}
               </div>
             </div>
@@ -406,6 +415,30 @@ export default function Services() {
             </div>
           </section>
         </div>
+        {selectedImage && (
+          <div
+           onClick={() => setSelectedImage(null)}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 9999,
+              padding: "20px",
+            }}
+          >
+            <img
+              src={selectedImage}
+              alt="Selected"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          </div>
+        )}
       </Layout>
     </>
   );
