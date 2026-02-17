@@ -12,11 +12,7 @@ const services = [
     desc: "Deep steam clean to remove germs, odors, and grime safely.",
     img: "/assets/imgs/services/placeholders/steam1.png",
   },
-  {
-    title: "Wax & Paint Protection",
-    desc: "High-gloss shine with protection from sun, rain, and dirt.",
-    img: "/assets/imgs/services/placeholders/wax.png",
-  },
+
   {
     title: "Carpet & Seat Shampoo",
     desc: "Lift stains and restore seats & carpets for a like-new interior.",

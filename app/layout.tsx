@@ -6,8 +6,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
-
 const urbanist = Urbanist({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
@@ -19,6 +17,12 @@ export const metadata: Metadata = {
   title: "Samy Crystal Clear Auto Detailing",
   description:
     "Samy Crystal Clear Auto Detailing offers professional interior and exterior car detailing, ceramic coating, and premium auto care services.",
+
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

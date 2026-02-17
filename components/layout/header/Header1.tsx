@@ -137,11 +137,11 @@ export default function Header1({
                         Services
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link className="color-white" href="/gallery">
                         Gallery
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link className="color-white" href="/about-us">
                         About

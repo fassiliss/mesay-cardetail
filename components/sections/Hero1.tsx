@@ -8,7 +8,7 @@ export default function Hero1() {
         </h1>
 
         <p className="text-white mb-30">
-          Interior • Exterior • Paint Protection • Mobile Service
+          Interior • Exterior • Engine Bay Detail • Mobile Service
         </p>
 
         <a href="/contact" className="btn btn-brand-2">

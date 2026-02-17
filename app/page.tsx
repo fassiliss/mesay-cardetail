@@ -5,7 +5,7 @@ import Search1 from "@/components/sections/Search1";
 import Services1 from "@/components/sections/Services1";
 import Testimonials from "@/components/sections/Testimonials";
 import WhyUs1 from "@/components/sections/WhyUs1";
-import BeforeAfterGallery from "@/components/sections/Gallery";
+// import BeforeAfterGallery from "@/components/sections/Gallery";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Search1 />
       <WhyUs1 />
       <Services1 />
-      <BeforeAfterGallery />
+      {/* <BeforeAfterGallery /> */}
       <Cta3 />
       <Testimonials />
     </Layout>
