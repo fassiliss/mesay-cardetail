@@ -57,14 +57,13 @@ export default function Footer1() {
               <h6 className="text-linear-3">Quick Links</h6>
               <ul className="menu-footer">
                 <li>
+                  <Link href="/">Home</Link>
+                </li>
+
+                <li>
                   <Link href="/services">Services</Link>
                 </li>
-                <li>
-                  <Link href="/gallery">Gallery</Link>
-                </li>
-                <li>
-                  <Link href="/fleet">Fleet Services</Link>
-                </li>
+
                 <li>
                   <Link href="/about-us">About</Link>
                 </li>
