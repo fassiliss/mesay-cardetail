@@ -31,7 +31,9 @@ export default function Contact() {
     setForm((p) => ({ ...p, [name]: value }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSending, setIsSending] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!form.agree) {
@@ -39,9 +41,40 @@ export default function Contact() {
       return;
     }
 
-    console.log("Submitted:", form);
-    alert("Thanks! We received your request. We’ll contact you soon.");
+    setIsSending(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data?.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      alert("Thanks! We received your request. We’ll contact you soon.");
+
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        service: "Interior Detail",
+        message: "",
+        agree: false,
+      });
+    } catch (err) {
+      alert("Failed to send. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
+
 
   return (
     <Layout footerStyle={1}>
@@ -295,8 +328,12 @@ export default function Contact() {
                     </div>
 
                     <div className="col-lg-12">
-                      <button className="btn btn-book" type="submit">
-                        Send Request
+                      <button
+                        className="btn btn-book"
+                        type="submit"
+                        disabled={isSending}
+                      >
+                        {isSending ? "Sending..." : "Send Request"}
                         <svg
                           width={17}
                           height={16}
