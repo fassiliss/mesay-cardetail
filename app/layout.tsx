@@ -14,9 +14,9 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Samy Crystal Clear Auto Detailing",
+  title: "Cross Shine Car Detailing",
   description:
-    "Samy Crystal Clear Auto Detailing offers professional interior and exterior car detailing, ceramic coating, and premium auto care services.",
+    "Cross Shine Car Detailing offers mobile interior and exterior car detailing, paint correction, ceramic coating, and premium auto care in Nashville.",
 
   icons: {
     icon: "/icon.png",

@@ -1,14 +1,24 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function HeroSearch() {
+  const router = useRouter();
   const [service, setService] = useState("Full Detail");
   const [vehicle, setVehicle] = useState("Sedan");
   const [date, setDate] = useState("");
 
   function handleSubmit() {
-    console.log({ service, vehicle, date });
-    alert("Thanks! We’ll contact you shortly to confirm your appointment.");
+    const params = new URLSearchParams({
+      service,
+      vehicle,
+    });
+
+    if (date) {
+      params.set("date", date);
+    }
+
+    router.push(`/contact?${params.toString()}`);
   }
 
   return (
@@ -24,7 +34,7 @@ export default function HeroSearch() {
           <option>Interior Detail</option>
           <option>Exterior Detail</option>
           <option>Full Detail</option>
-          <option>Engine Cleaning</option>
+          <option>Engine Bay Detail</option>
         </select>
       </div>
 

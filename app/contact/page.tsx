@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 
@@ -11,9 +11,37 @@ export default function Contact() {
     email: "",
     phone: "",
     service: "Interior Detail",
+    vehicle: "",
+    preferredDate: "",
     message: "",
     agree: false,
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+    const vehicle = params.get("vehicle");
+    const preferredDate = params.get("date");
+
+    if (!service && !vehicle && !preferredDate) {
+      return;
+    }
+
+    setForm((previous) => ({
+      ...previous,
+      service: service || previous.service,
+      vehicle: vehicle || previous.vehicle,
+      preferredDate: preferredDate || previous.preferredDate,
+      message:
+        previous.message ||
+        [
+          vehicle ? `Vehicle type: ${vehicle}` : "",
+          preferredDate ? `Preferred date: ${preferredDate}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+    }));
+  }, []);
 
   const onChange = (
     e: React.ChangeEvent<
@@ -65,6 +93,8 @@ export default function Contact() {
         email: "",
         phone: "",
         service: "Interior Detail",
+        vehicle: "",
+        preferredDate: "",
         message: "",
         agree: false,
       });
@@ -231,6 +261,42 @@ export default function Contact() {
                           onChange={onChange}
                           placeholder="email@domain.com"
                           required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label className="text-sm-medium neutral-1000">
+                          Vehicle Type
+                        </label>
+                        <select
+                          className="form-control"
+                          name="vehicle"
+                          value={form.vehicle}
+                          onChange={onChange}
+                        >
+                          <option value="">Select vehicle type</option>
+                          <option value="Sedan">Sedan</option>
+                          <option value="SUV">SUV</option>
+                          <option value="Truck">Truck</option>
+                          <option value="Van">Van</option>
+                          <option value="Fleet">Fleet</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label className="text-sm-medium neutral-1000">
+                          Preferred Date
+                        </label>
+                        <input
+                          className="form-control"
+                          type="date"
+                          name="preferredDate"
+                          value={form.preferredDate}
+                          onChange={onChange}
                         />
                       </div>
                     </div>

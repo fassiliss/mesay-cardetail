@@ -65,6 +65,10 @@ export default function Footer1() {
                 </li>
 
                 <li>
+                  <Link href="/gallery">Gallery</Link>
+                </li>
+
+                <li>
                   <Link href="/about-us">About</Link>
                 </li>
                 <li>

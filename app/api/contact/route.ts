@@ -4,7 +4,17 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const { firstName, lastName, email, phone, service, message, agree } = body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      service,
+      vehicle,
+      preferredDate,
+      message,
+      agree,
+    } = body;
 
     if (!agree) {
       return new Response(JSON.stringify({ error: "Must agree to terms." }), {
@@ -33,6 +43,8 @@ Name: ${firstName} ${lastName}
 Email: ${email}
 Phone: ${phone}
 Service: ${service}
+Vehicle: ${vehicle || "(not provided)"}
+Preferred Date: ${preferredDate || "(not provided)"}
 
 Message:
 ${message || "(no message)"}
