@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import BackToTop from "../elements/BackToTop";
+import LiveChat from "../elements/LiveChat";
 import Breadcrumb from "./Breadcrumb";
 import MobileMenu from "./MobileMenu";
 import Footer1 from "./footer/Footer1";
@@ -66,6 +67,7 @@ export default function Layout({
       {footerStyle === 2 ? <Footer2 /> : null}
 
       <BackToTop target="#top" />
+      <LiveChat />
     </>
   );
 }
