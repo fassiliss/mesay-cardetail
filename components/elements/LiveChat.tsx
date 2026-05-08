@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ChatStatus = "idle" | "sending" | "sent" | "error";
 
 export default function LiveChat() {
+  const chatRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<ChatStatus>("idle");
   const [error, setError] = useState("");
@@ -21,6 +22,23 @@ export default function LiveChat() {
     const { name, value } = e.target;
     setForm((previous) => ({ ...previous, [name]: value }));
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!chatRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+    };
+  }, [isOpen]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +72,7 @@ export default function LiveChat() {
   };
 
   return (
-    <div className="live-chat">
+    <div className="live-chat" ref={chatRef}>
       {isOpen && (
         <div className="live-chat-panel" role="dialog" aria-label="Live chat">
           <div className="live-chat-header">
